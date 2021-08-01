@@ -57,6 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               '$_counter1',
               style: Theme.of(context).textTheme.headline4,
+              key: Key('counter1'),
             ),
             Text(
               'You have pushed the button 2 this many times:',
@@ -64,6 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               '$_counter2',
               style: Theme.of(context).textTheme.headline4,
+              key: Key('counter2'),
             ),
           ],
         ),
@@ -75,11 +77,13 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: _incrementCounter1,
             tooltip: 'Decrement',
             child: Icon(Icons.add),
+            key: Key('button1'),
           ),
           FloatingActionButton(
             onPressed: _incrementCounter2,
             tooltip: 'Increment',
             child: Icon(Icons.add),
+            key: Key('button2'),
           ),
         ]
       )

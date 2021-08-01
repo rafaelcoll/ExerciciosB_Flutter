@@ -54,6 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   icon: Icon(Icons.add_circle),
                   tooltip: 'Increase bid by 50',
                   onPressed: _increaseBid,
+                  key: Key('increaseBidButton'),
                 ),
                 Text(
                   'Increase Bid',
