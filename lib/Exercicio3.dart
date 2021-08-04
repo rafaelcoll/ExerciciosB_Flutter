@@ -1,3 +1,4 @@
+import 'package:exercicios/counter.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -27,16 +28,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter1 = 0;
-  int _counter2 = 0;
+  var _counter1 = Counter();
+  var _counter2 = Counter();
+
   void _incrementCounter1() {
     setState(() {
-      _counter1++;
+      _counter1.incrementCounter();
     });
   }
   void _incrementCounter2() {
     setState(() {
-      _counter2++;
+      _counter2.incrementCounter();
     });
   }
 
@@ -55,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button 1 this many times:',
             ),
             Text(
-              '$_counter1',
+              '${_counter1.counter}',
               style: Theme.of(context).textTheme.headline4,
               key: Key('counter1'),
             ),
@@ -63,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button 2 this many times:',
             ),
             Text(
-              '$_counter2',
+              '${_counter2.counter}',
               style: Theme.of(context).textTheme.headline4,
               key: Key('counter2'),
             ),
@@ -75,13 +77,13 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           FloatingActionButton(
             onPressed: _incrementCounter1,
-            tooltip: 'Decrement',
+            tooltip: 'Increment 1',
             child: Icon(Icons.add),
             key: Key('button1'),
           ),
           FloatingActionButton(
             onPressed: _incrementCounter2,
-            tooltip: 'Increment',
+            tooltip: 'Increment 2',
             child: Icon(Icons.add),
             key: Key('button2'),
           ),

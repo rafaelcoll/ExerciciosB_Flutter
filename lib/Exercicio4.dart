@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'adder.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -12,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Bid Demo Home Page'),
+      home: MyHomePage(title: 'Adder App Home Page'),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -26,12 +28,24 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  double _maxBid = 0;
-  double increment = 50;
-  void _increaseBid() {
-    setState(() {
-      _maxBid += increment;
-    });
+  Adder? _adder = null;
+  int? _number1;
+  int? _number2;
+  String _result = '';
+
+
+  late TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -45,24 +59,65 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'My Maximum Bid: $_maxBid',
+              'Insert 2 natural numbers',
+              style: Theme.of(context).textTheme.headline6,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                IconButton(
-                  icon: Icon(Icons.add_circle),
-                  tooltip: 'Increase bid by 50',
-                  onPressed: _increaseBid,
-                  key: Key('increaseBidButton'),
-                ),
+            const SizedBox(height: 16),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 32, vertical: 8),
+              child: Row(
+                children: <Widget>[
+                  Text(
+                    'Number 1:  ',
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                  Flexible(
+                    child: TextFormField(
+                      onChanged: (value) => setState(() => _number1 = int.tryParse(value)),
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 12.0),
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 32, vertical: 8),
+              child: Row(
+                children: <Widget>[
+                  Text(
+                    'Number 2:  ',
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                  Flexible(
+                    child: TextFormField(
+                      onChanged: (value) => setState(() => _number2 = int.tryParse(value)),
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 12.0),
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            ElevatedButton(
+              onPressed: (_number1 == null || _number2 == null)
+                  ? null
+                  : () => setState(() => _result = Adder(_number1!, _number2!).sum.toString()),//Adder(_number1, _number2), //adder.isNull ? : Adder(_number1, _number2),
+              child: const Text('Sum'),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 32, vertical: 8),
+              child:
                 Text(
-                  'Increase Bid',
-                  style: Theme.of(context).textTheme.bodyText1,
+                  '$_result',
+                  style: Theme.of(context).textTheme.headline4,
 
                 ),
-              ],
-            )
+            ),
           ],
         ),
       ),

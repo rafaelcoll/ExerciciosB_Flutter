@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:exercicios/counter.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,16 +28,23 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  var _counter = Counter();
+  var _isDecreasable = false;
+
   void _incrementCounter() {
     setState(() {
-      _counter++;
+      _counter.incrementCounter();
     });
+    _isDecreasable = true;
   }
+
   void _decrementCounter() {
     setState(() {
-      _counter--;
+      _counter.decrementCounter();
     });
+    if (_counter.counter == 0) {
+      _isDecreasable = false;
+    }
   }
 
   @override
@@ -63,10 +71,13 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          FloatingActionButton(
-            onPressed: _decrementCounter,
-            tooltip: 'Decrement',
-            child: Icon(Icons.remove_circle),
+          Visibility(
+            visible: _isDecreasable,
+            child: FloatingActionButton(
+              onPressed: _decrementCounter,
+              tooltip: 'Decrement',
+              child: Icon(Icons.remove_circle),
+            ),
           ),
           FloatingActionButton(
             onPressed: _incrementCounter,
