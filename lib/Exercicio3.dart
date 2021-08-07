@@ -33,12 +33,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter1() {
     setState(() {
-      _counter1.incrementCounter();
+      _counter1.increment();
     });
   }
   void _incrementCounter2() {
     setState(() {
-      _counter2.incrementCounter();
+      _counter2.increment();
     });
   }
 
@@ -57,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button 1 this many times:',
             ),
             Text(
-              '${_counter1.counter}',
+              '${_counter1.value}',
               style: Theme.of(context).textTheme.headline4,
               key: Key('counter1'),
             ),
@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button 2 this many times:',
             ),
             Text(
-              '${_counter2.counter}',
+              '${_counter2.value}',
               style: Theme.of(context).textTheme.headline4,
               key: Key('counter2'),
             ),

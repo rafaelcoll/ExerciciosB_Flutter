@@ -33,16 +33,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     setState(() {
-      _counter.incrementCounter();
+      _counter.increment();
     });
     _isDecreasable = true;
   }
 
   void _decrementCounter() {
     setState(() {
-      _counter.decrementCounter();
+      _counter.decrement();
     });
-    if (_counter.counter == 0) {
+    if (_counter.value == 0) {
       _isDecreasable = false;
     }
   }
@@ -62,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button this many times:',
             ),
             Text(
-              '$_counter',
+              '${_counter.value}',
               style: Theme.of(context).textTheme.headline4,
             ),
           ],

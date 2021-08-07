@@ -2,42 +2,25 @@ import 'package:exercicios/counter.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('Counter class test', () {
-    Counter counterTest;
-
-    test('Object creation test', () {
-      counterTest = Counter();
-      expect(counterTest.runtimeType, equals(Counter().runtimeType));
-    });
-    
-    test('incrementCounter() method test', () {
-      counterTest = Counter();
-      counterTest.incrementCounter();
-      
-      expect(counterTest.counter, equals(1));
+  group('Counter', () {
+    test('value should start at 0', () {
+      expect(Counter().value, 0);
     });
 
-    test('decrementCounter() method test', () {
-      counterTest = Counter();
-      counterTest.incrementCounter();
-      counterTest.incrementCounter();
-      counterTest.decrementCounter();
+    test('value should be incremented', () {
+      final counter = Counter();
 
-      expect(counterTest.counter, equals(1));
+      counter.increment();
+
+      expect(counter.value, 1);
     });
 
-    test('decrementCounter() do not descrese to less than zero test', () {
-      // decrement a new Counter (value = 0)
-      counterTest = Counter();
-      counterTest.decrementCounter();
-      expect(counterTest.counter, equals(0));
+    test('value should be decremented', () {
+      final counter = Counter();
 
-      // decrement a Counter after increment
-      counterTest = Counter();
-      counterTest.incrementCounter();
-      counterTest.decrementCounter();
-      counterTest.decrementCounter();
-      expect(counterTest.counter, equals(0));
+      counter.decrement();
+
+      expect(counter.value, -1);
     });
   });
 }

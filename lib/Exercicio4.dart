@@ -106,18 +106,19 @@ class _MyHomePageState extends State<MyHomePage> {
             ElevatedButton(
               onPressed: (_number1 == null || _number2 == null)
                   ? null
-                  : () => setState(() => _result = Adder(_number1!, _number2!).sum.toString()),//Adder(_number1, _number2), //adder.isNull ? : Adder(_number1, _number2),
+                  : () => setState(() => _result = Adder(_number1!, _number2!).sum.toString()),
               child: const Text('Sum'),
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 32, vertical: 8),
-              child:
-                Text(
-                  '$_result',
-                  style: Theme.of(context).textTheme.headline4,
+            Text(
+              '$_result',
+              style: Theme.of(context).textTheme.headline4,
 
-                ),
             ),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 32, vertical: 8),
+            //   child:
+            //
+            // ),
           ],
         ),
       ),
